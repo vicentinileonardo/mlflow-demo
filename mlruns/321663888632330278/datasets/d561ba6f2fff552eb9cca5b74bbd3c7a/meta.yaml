@@ -1,0 +1,8 @@
+digest: cfd95f00
+name: dataset
+profile: '{"features_shape": [45, 13], "features_size": 585, "features_nbytes": 4680}'
+schema: '{"mlflow_tensorspec": {"features": "[{\"type\": \"tensor\", \"tensor-spec\":
+  {\"dtype\": \"float64\", \"shape\": [-1, 13]}}]", "targets": null}}'
+source: '{"tags": {"mlflow.user": "leonardovicentini", "mlflow.source.name": "model.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "0ede48b7facde7d801cdaabdd361e3b794acdba2"}}'
+source_type: code

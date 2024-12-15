@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/leonardovicentini/Desktop/Magistrale/Theses/system/mlflow-demo/mlruns/321663888632330278/dce3966053da44658dc78889d02ac9d8/artifacts
+end_time: 1734221955400
+entry_point_name: ''
+experiment_id: '321663888632330278'
+lifecycle_stage: active
+run_id: dce3966053da44658dc78889d02ac9d8
+run_name: default-params
+run_uuid: dce3966053da44658dc78889d02ac9d8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734221950771
+status: 3
+tags: []
+user_id: leonardovicentini

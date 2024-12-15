@@ -9,7 +9,7 @@ I had to uninstall the cert manager on my local cluster as kserve needs at least
 
 ## Steps
 
-### Installation of Kserve and prerequisites
+### Installation of KServe and prerequisites
 
 ```bash
 curl -s "https://raw.githubusercontent.com/kserve/kserve/release-0.14/hack/quick_install.sh" | bash
@@ -44,3 +44,20 @@ curl -v http://sklearn-iris.kserve-test.svc.cluster.local/v1/models/sklearn-iris
 # Response
 #{"predictions":[1,1]}
 ```
+
+
+---
+
+
+
+kubectl create namespace mlflow-kserve-test
+
+
+mlflow models build-docker -m runs:/<run_id_for_your_best_run>/model -n <your_dockerhub_user_name>/mlflow-wine-classifier --enable-mlserver
+
+
+docker push <your_dockerhub_user_name>/mlflow-wine-classifier
+
+
+kubectl apply -f deployment.yaml
+kubectl get inferenceservice mlflow-wine-classifier
