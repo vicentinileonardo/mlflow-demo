@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  REPOSITORY: ${{ secrets.REGISTRY_NAMESPACE }}/tbd
+  REPOSITORY: ${{ secrets.REGISTRY_NAMESPACE }}/mlflow-wine-classifier
 
 jobs:
   build:
@@ -30,18 +30,32 @@ jobs:
       
       - name: Check Python version
         run: python --version
-        
+
       - name: Install mlflow
         run: pip install mlflow[mlserver]
 
       - name: Check mlflow version
         run: mlflow --version
 
-      #- name: Login to Container Registry
-      #  run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ env.REGISTRY }} -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      
+      - name: Check Docker version
+        run: docker --version
+        
+      - name: Login to Container Registry
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ env.REGISTRY }} -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
       #- name: Build Docker image
-      #  run: mlflow models build-docker -m runs:/<run_id_for_your_best_run>/model -n <your_dockerhub_user_name>/mlflow-wine-classifier --enable-mlserver
-      
+      #  run: mlflow models build-docker -m runs:/dce3966053da44658dc78889d02ac9d8/model -n ${{ env.REPOSITORY }}:latest --enable-mlserver
+
       #- name: Push Docker image
-      #  run: docker push ${{ secrets.REGISTRY_USERNAME }}/mlflow-wine-classifier
+      #  run: docker push ${{ env.REPOSITORY }}:latest
