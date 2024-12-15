@@ -55,7 +55,7 @@ jobs:
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ env.REGISTRY }} -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: mlflow models build-docker -m runs:/dce3966053da44658dc78889d02ac9d8/model -n ${{ env.REPOSITORY }}:latest --enable-mlserver
+        run: mlflow models build-docker -m mlruns/321663888632330278/dce3966053da44658dc78889d02ac9d8/artifacts/model -n ${{ env.REPOSITORY }}:latest --enable-mlserver
 
       - name: Push Docker image
         run: docker push ${{ env.REPOSITORY }}:latest
