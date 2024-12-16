@@ -12,6 +12,10 @@ Therefore cert-manager is installed by the KServe installation script.
 
 This demo is not leveraging the MLflow model registry.
 
+## Architecture
+
+![Architecture](docs/images/mlflow.png)
+
 ## Steps
 
 ### Installation of KServe and prerequisites on the k8s cluster
